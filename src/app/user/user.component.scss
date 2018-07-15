@@ -1,0 +1,26 @@
+@import '../../scss/variables';
+@import '../../scss/navbar';
+@import '../../scss/masthead';
+@import '../../scss/contact';
+@import '../../scss/dashboard';
+
+
+
+.baby-img{
+  max-height: 12em;
+}
+
+.button-add-baby-big{
+  max-height: 4em;
+  display: block;
+  margin: 0 auto;
+}
+
+.dashboard-item-center{
+  margin-top: 15px;
+
+}
+
+input {
+  text-align: center;
+}

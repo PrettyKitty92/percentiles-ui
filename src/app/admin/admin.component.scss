@@ -1,0 +1,17 @@
+
+$theme-primary: #597386;
+$theme-content: rgba(255, 255, 255, 0);
+$theme-success: rgb(166, 221, 217);
+
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%);
+$gray-dark: lighten($gray-base, 20%);
+$gray: lighten($gray-base, 33.5%);
+$gray-light: lighten($gray-base, 46.7%);
+$gray-lighter: lighten($gray-base, 93.5%);
+
+@import '../../scss/navbar';
+@import '../../scss/masthead';
+@import '../../scss/contact';
+@import '../../scss/dashboard';
+

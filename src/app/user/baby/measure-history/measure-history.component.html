@@ -1,0 +1,82 @@
+<h3>
+  Przegloądaj hisroyczne wykresy
+</h3>
+<app-alert></app-alert>
+<div *ngIf="contentIsLoading"style="margin-left:47%">
+  <mat-spinner></mat-spinner>
+</div>
+<form>
+  <div class="form-group">
+    <label for="measurementType">Wybie rodzaj pomiaru</label>
+    <select [(ngModel)]="measurementType"
+            class="form-control"
+            name="measurementType" id="measurementType">
+      <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+        {{measurementType.description.toUpperCase()}}
+      </option>
+    </select>
+  </div>
+
+  <button type="button" class="btn" (click)="filtered=!filtered">Filtruj</button>
+
+  <div class="form-group" *ngIf="filtered">
+    <label for="filterType">Wybierz typ danych</label>
+    <div class="input-group">
+      <select (change)="setFilteredType($event.target.value)"
+              class="form-control" name="filterType" id="filterType">
+        <option value=DAYS>DZIEŃ</option>
+        <option value=DATES>DATA</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="filtered&&filteredBy=='DATES'">
+    <label>Date from</label>
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="fromDate" ngbDatepicker #d="ngbDatepicker">
+      <button class="input-group-addon" (click)="d.toggle()" type="button">
+        <img src="assets/images/calendar.png" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="filtered&&filteredBy=='DATES'">
+    <label>Date from</label>
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="toDate" ngbDatepicker #d="ngbDatepicker">
+      <button class="input-group-addon" (click)="d.toggle()" type="button">
+        <img src="assets/images/calendar.png" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="filtered&&filteredBy=='DAYS'">
+    <label for="dayFrom">Dzień od</label>
+    <input type="number" class="form-control" [(ngModel)]="fromDay"
+           id="dayFrom" name="dayFrom">
+
+    <label for="dayTo">Dzień do</label>
+    <input type="number" class="form-control" [(ngModel)]="toDay"
+           id="dayTo" name="dayTo">
+  </div>
+
+  <button type="button" class="btn" (click)="load()">ZAŁADUJ</button>
+
+  <hr>
+
+  <ng2-smart-table *ngIf="option=='table'&&dataIsLoaded" [settings]="settings" [source]="measurements"></ng2-smart-table>
+
+  <div *ngIf="option=='chart'&&dataIsLoaded">
+    <canvas id="mixed-chart" baseChart [datasets]="chartData.samples" [labels]="chartData.labels"
+            [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
+
+  </div>
+
+  <span *ngIf="noData">No data</span>
+
+
+</form>
+
+

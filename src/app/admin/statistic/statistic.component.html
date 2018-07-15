@@ -1,0 +1,130 @@
+<div class="container" style="text-align:center">
+
+  <app-alert></app-alert>
+
+  <br/>
+  <button *ngIf="!editRecord" type="button" class="btn search-btn" (click)="openEditRecordPanel()">
+    Edytuj dane pomiarów
+  </button>
+  <br/>
+  <button *ngIf="!browser" type="button" class="btn search-btn" (click)="openBrowserPanel()">
+    Przegladaj Statystyki
+  </button>
+
+  <br/>
+  <br/>
+  <hr/>
+
+
+  <div *ngIf="browser">
+    <div *ngIf="isDataLoaded">
+      <br/>
+      <hr/>
+      <hr/>
+      <h3>{{description}}</h3>
+      <br/>
+      <canvas id="mixed-chart" baseChart [datasets]="chartData.samples" [labels]="chartData.labels"
+              [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
+    </div>
+    <hr/>
+    <form>
+      <!--<h3>Explore percentile charts!</h3>-->
+      <div class="form-group">
+        <label for="measurementType">Wybierz rodzaj pomaru</label>
+        <select [(ngModel)]="params.measurementType"
+                class="form-control"
+                name="measurementType" id="measurementType">
+          <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+            {{measurementType.description.toUpperCase()}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="childSex">Wybierz płeć dziecka</label>
+        <select [(ngModel)]="params.childSex" class="form-control" name="childSex" id="childSex">
+          <option value="GIRL">Dziewczynka</option>
+          <option value="BOY">Chłopiec</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="reloadChart()">PRZEŁADUJ</button>
+
+    </form>
+  </div>
+  <div *ngIf="editRecord">
+
+
+
+    <form>
+      <!--<h3>Explore percentile charts!</h3>-->
+      <div class="form-group">
+        <label for="measurementType">Wybierz rodzaj pomaru</label>
+        <select [(ngModel)]="measurementDetails.type" (change)="onChange($event.target.value)"
+                class="form-control"
+                name="measurementType" id="measurementType2">
+          <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+            {{measurementType.description.toUpperCase()}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="childSex">Wybierz płeć dziecka</label>
+        <select [(ngModel)]="measurementDetails.sex" class="form-control" name="childSex" id="childSex2">
+          <option value="GIRL">Dziewczynka</option>
+          <option value="BOY">Chłopiec</option>
+        </select>
+      </div>
+
+
+      <div class="form-group" *ngIf="!measurementTypeHeightLength()">
+        <label for="dayOfMeasurement">Wybierz dzien pomiaru</label>
+        <input type="text" class="form-control" [(ngModel)]="measurementDetails.parameterX"
+               id="dayOfMeasurement" name="dayOfMeasurement" placeholder="dzień pomaru" required>
+      </div>
+
+      <div class="form-group" *ngIf="measurementTypeHeightLength()">
+        <label for="heightLengthOfMeasurement">Podaj wysokość</label>
+        <input type="text" class="form-control" [(ngModel)]="measurementDetails.parameterX"
+               id="heightLengthOfMeasurement" name="heightLengthOfMeasurement" placeholder="długośc/wysokość dziecka" required>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="loadMeasurementData()">POBIERZ</button>
+
+    </form>
+
+    <hr/>
+    <form *ngIf="sampleDataLoaded">
+      <h3>LMS</h3>
+      <div class="form-group-lms">
+        <label for="lmsLast">Lambda</label>
+        <input type="number" class="form-control"  [(ngModel)]="measurementEditDetails.lambdaMuSigmaProperties.lambda"
+               id="lmsLast" name="lmsLast">
+      </div>
+      <div class="form-group-lms">
+        <label for="lmsMean">Mu</label>
+        <input type="number" class="form-control"  [(ngModel)]="measurementEditDetails.lambdaMuSigmaProperties.mu"
+               id="lmsMean" name="lmsMean">
+      </div>
+      <div class="form-group-lms">
+        <label for="lmsSquares">Sigma</label>
+        <input type="number" class="form-control"  [(ngModel)]="measurementEditDetails.lambdaMuSigmaProperties.sigma"
+               id="lmsSquares" name="lmsSquares">
+      </div>
+      <hr/>
+
+      <h3>Centyle</h3>
+
+      <div  *ngFor="let valuePerPercentile of measurementEditDetails.valuePerPercentiles" class="form-group-lms">
+        <label for="percentile{{valuePerPercentile.percentile}}">{{valuePerPercentile.percentile}}</label>
+        <input type="number" class="form-control"  [(ngModel)]="valuePerPercentile.value"
+               id="percentile{{valuePerPercentile.percentile}}" name="percentile{{valuePerPercentile.percentile}}">
+      </div>
+      <button type="button" class="btn btn-success" (click)="loadMeasurementData()">ODŚWIEŻ</button>
+      <button type="button" class="btn btn-success" (click)="saveMeasurementData()">ZAPISZ</button>
+
+
+    </form>
+  </div>
+</div>

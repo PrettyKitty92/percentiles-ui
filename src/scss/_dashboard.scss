@@ -1,0 +1,117 @@
+
+.dashboard {
+  background-color: $theme-content;
+  min-height: 80vh;
+  width: inherit;
+  // overflow: auto;
+  //height: 100%;
+
+  padding-bottom: 0px;
+  border: none;
+  padding-left: 0;
+
+  .sidebar-nav {
+    background-color: $theme-primary;
+    width: 20em;
+    height: 100%;
+    padding-top: 1.5em;
+
+    button {
+      margin-left: 1em;
+    }
+  }
+
+  collapsible-list {
+    box-shadow: none !important;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-shadow: -1px 0 white;
+    letter-spacing: 1px;
+    font-size: 14px;
+    background-color: $theme-primary;
+    width: 100%;
+    border: none;
+
+
+    collapsible-body
+    {
+      background-color: $theme-success;
+      border: none;
+      box-shadow: none !important;
+      color: white;
+      cursor: pointer;
+      cursor: hand;
+      padding: 1rem;
+    //  padding-bottom: 5px;
+   //   padding-top: 5px;
+
+      &:hover {
+        background-color: $theme-primary;
+        color: $theme-success;
+        outline: none;
+      }
+      &:focus {
+       color: white;
+     }
+
+      .collapsible-body-link{
+        text-decoration: none;
+        color: white;
+        border: none !important;
+      }
+
+    }
+
+    collapsible-header {
+      cursor: pointer;
+      cursor: hand;
+      color: white;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14);
+      /*box-shadow: none !important;*/
+      background-color: $theme-primary;
+      border-bottom-color: $theme-success;
+
+      &:hover {
+        background-color: $theme-success;
+        color: $theme-primary;
+        outline: none;
+      }
+      &:active,
+      &:focus {
+        color: white;
+      }
+    }
+
+  }
+
+  .page-content {
+    padding:3em;
+  }
+}
+
+.sidebar {
+  background-color: $theme-content;
+  height: 80vh;
+
+}
+
+.sidebar-button-open {
+  cursor: pointer;
+  cursor: hand;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.sidebar-button-close {
+  cursor: pointer;
+  cursor: hand;
+  margin-left: 17em;
+  margin-bottom: 1em;
+  width: 30px;
+  height: 30px;
+}
+
+
+
+

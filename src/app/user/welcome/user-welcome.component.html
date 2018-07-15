@@ -1,0 +1,36 @@
+<div style="text-align:center">
+  <app-alert></app-alert>
+
+  <h1>
+    {{title+' '+currentUser.username}}!
+  </h1>
+
+  <div *ngIf="currentUser.babies.length===0">
+    <h4 class="text-center">Nie monitorujesz zadnych dzieci, zarejestruj je</h4>
+    <div class="dashboard-item-center">
+      <a data-toggle="modal" [routerLink]="['/pages/user/baby/add']" routerLinkActive="active">
+        <img class="img-fluid button-add-baby-big" src="assets/images/user/add-baby.png" alt=""
+             title="zarejestruj dziecko">
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="currentUser.babies.length>0">
+    <h4 class="text-center">Twoje dzieci</h4>
+
+    <div *ngFor="let baby of currentUser.babies">
+      <div class="container visit-card" (click)="setBaby(baby.name)"> <!--Admin vistoting card-->
+          <h3>{{baby.name}}</h3>
+          <h6>data urodzenia</h6>
+          <h3>{{baby.dateOfBirth}}</h3>
+      </div>
+    </div>
+    <a data-toggle="modal" [routerLink]="['/pages/user/baby/add']" routerLinkActive="active" >
+      <img class="img-fluid button-add-baby-big" style="max-height:300px" src="assets/images/user/add-baby.png" alt=""
+           title="zarejestruj dziecko">
+    </a>
+  </div>
+</div>
+
+
+

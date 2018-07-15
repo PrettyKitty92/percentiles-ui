@@ -1,0 +1,91 @@
+@import "../admin.component.scss";
+
+.search-btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+  background-color: $theme-primary !important;
+  :focus {
+    background: $theme-success !important;
+  }
+}
+
+.search-results {
+  display: block;
+  text-align: center;
+  width: 100%;
+  border: 1px solid transparent;
+  background: $theme-success !important;
+  :focus {
+    background: $theme-primary !important;
+  }
+}
+
+
+.visit-card {
+  overflow: hidden;
+  width: 100%;
+  background-color: $theme-success;
+  text-align: center;
+  margin: auto;
+  color: white;
+  list-style-type: none;
+  padding: 1em;
+}
+.visit-card-left {
+  float: left;
+  width: 80%;
+  text-align: left;
+  padding-left: 12px;
+ // padding-bottom: 500em;
+ // margin-bottom: -500em;
+}
+.visit-card-right {
+  float: left;
+  width: 20%;
+  margin-right: -1px;
+  padding-bottom: 500em;
+  margin-bottom: -500em;
+//  text-align: center;
+
+}
+input {
+  text-align: center;
+}
+
+.card-user{
+  color: #888b88;
+  font-size: 16px;
+}
+
+.card-baby{
+  font-size: 14px;
+}
+
+/*
+.visit-card{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: block;
+  background: $theme-success;
+}
+.visit-card-left{
+  position: absolute;
+  margin: 0;
+ // overflow: auto;
+  display: block;
+  float: left;
+}
+
+.visit-card-right{
+  position: absolute;
+  margin: 0;
+  overflow: auto;
+  display: block;
+  float: right;
+}
+*/

@@ -1,0 +1,53 @@
+<div class="container" style="text-align:center">
+
+
+  <app-alert></app-alert>
+
+
+  <div class="container visit-card" *ngIf="selectedUser"> <!--User vistoting card-->
+    <div class="visit-card-left">
+      <h3>{{selectedUser.username}}</h3>
+      <div class="card-user">
+        <p>{{selectedUser.firstName}} {{selectedUser.lastName}} email: {{selectedUser.email}}</p>
+      </div>
+      <div *ngIf="selectedUser.babies">
+        <h4>Dzieci:</h4>
+        <li *ngFor="let baby of selectedUser.babies">
+          <div class="card-baby">
+            <p><b>{{baby.name}}</b> data urodzenia: {{baby.dateOfBirth}}</p>
+          </div>
+        </li>
+      </div>
+    </div>
+    <div class="visit-card-right">
+      <button type="button" class="btn" (click)="deleteUser(selectedUser)">Usuń</button>
+    </div>
+  </div>
+
+  <form>
+    <input
+      (keyup)="searchTerm$.next($event.target.value)"
+      placeholder="wprowadź nazwę użytkownika">
+    <ul *ngIf="searches">
+      <li *ngFor="let search of searches | slice:0:9">
+        <div>
+          <button type="button" class="btn search-results"
+                  (click)="showDetails(search)">{{search}}
+          </button>
+        </div>
+      </li>
+    </ul>
+
+
+    <button type="button" class="btn search-btn" (click)="getAllUsers()">Pokaż wszystkich użytkowników</button>
+    <ul *ngIf="users">
+      <li *ngFor="let user of users">
+        <div>
+          <button type="button" class="btn search-results" (click)="showDetails(user.username)">{{user.username}}
+          </button>
+        </div>
+      </li>
+    </ul>
+
+  </form>
+</div>

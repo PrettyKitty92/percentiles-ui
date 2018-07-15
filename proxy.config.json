@@ -1,0 +1,32 @@
+{
+  "/users/*": {
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": true,
+    "logLevel": "debug"
+  },
+  "/admin/*": {
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": true,
+    "logLevel": "debug"
+  },
+  "/samples/*": {
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/percentiles/*": {
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/sign-up":{
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": false,
+    "logLevel":"debug"
+  },
+  "/login":{
+    "target": "http://localhost:8080/percentiles/service",
+    "secure": false,
+    "logLevel":"debug"
+  }
+}

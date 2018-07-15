@@ -1,0 +1,136 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Centylowanie
+      <span *ngIf="currentUser" style="color: beige; font-size: small; font-family: 'fantasy' ">Witaj drogi rodzicu: {{currentUser.username}}</span>
+    </a>
+
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            (click)="isNavbarCollapsed = !isNavbarCollapsed"
+            aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <!-- <span class="navbar-toggler-icon"></span>-->
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="exCollapsingNavbar2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a *ngIf="!currentUser" class="nav-link js-scroll-trigger" routerLink="/pages/sign-in"
+             routerLinkActive="active">Zaloguj</a>
+          <a *ngIf="currentUser" class="nav-link js-scroll-trigger" (click)="logout()"
+             routerLinkActive="active">Wyloguj</a>
+          <!--          <a *ngIf="!currentUser" class="nav-link js-scroll-trigger" routerLink="/login" routerLinkActive="active">Login</a>-->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" routerLink="/pages/sign-up" routerLinkActive="active">Rejestracja</a>
+        </li>
+        <li class="nav-item" *ngIf="currentUser">
+          <a class="nav-link js-scroll-trigger" routerLink="/pages/user" routerLinkActive="active">Twoje konto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="masthead">
+  <div class="container">
+    <img class="img-fluid baby-img" src="assets/images/baby2.png" alt="">
+    <div class="intro-text">
+      <span class="name">Rozpocznij centylowanie</span>
+      <hr class="star-light">
+      <span class="skills">Sprawdź czy Twoje dziecko prawidłowo się rozwija</span>
+    </div>
+  </div>
+</header>
+
+<br/>
+<br/>
+<br/>
+<router-outlet></router-outlet>
+
+<section id="home-dashboard" style="{z-index: 1;}" onresize="getWindowSizes()">
+  <div class="container">
+    <hr class="star-primary">
+    <div class="row">
+
+
+      <div class="col-sm-4 home-dashboard-item">
+        <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['calculator']">
+          <img class="img-fluid" src="assets/images/home-dashboard/calculator.png" alt="" styles
+               title="Oblicz centyl dla dziecka">
+        </a>
+      </div>
+      <br/>
+
+      <div class="col-sm-4 home-dashboard-item">
+        <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['charts/samples']">
+          <img class="img-fluid" src="assets/images/home-dashboard/chart.png" alt=""
+               title="Przeglądaj wykresy statystyczne">
+        </a>
+      </div>
+      <br/>
+      <div class="col-sm-4 home-dashboard-item">
+        <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['about']">
+          <img class="img-fluid" src="assets/images/home-dashboard/about.png" alt="" title="Informacje o Centylowaniu">
+        </a>
+      </div>
+      <br/>
+
+    </div>
+    <div class="row">
+      <div *ngIf="currentUser" class="col-sm-12 home-dashboard-item">
+        <a class="home-dashboard-link-user" data-toggle="modal" [routerLink]="['/pages/user']">
+          <img *ngIf="getWindowSize()>719" class="img-fluid" src="assets/images/home-dashboard/user_account.png" alt=""
+               title="explore user account">
+          <img *ngIf="getWindowSize()<=719" class="img-fluid" onresize="getWindowSizes()"
+               src="assets/images/home-dashboard/user_account_small.png" alt="" title="przeglądaj ">
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<br/>
+<br/>
+<br/>
+
+<footer class="text-center">
+  <div class="footer-above">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-4">
+          <h3>Lokalizacja</h3>
+          <p>UJ FAIS
+            <br>Kraków</p>
+        </div>
+
+        <div class="footer-col col-md-4">
+          <h3>O Standardach Rozwoju Fizycznego Dzieci</h3>
+          <p>Wszelkie informacje na temat Standardów Rozwoju Fizycznego Dzieci znajdziesz na oficjalnej
+            <a href="http://www.who.int/childgrowth/standards/en/">stronie Światowej organizacji zdrowia</a></p>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Znajdz mnie</h3>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <p>email: patrycja.szelc@gmail.com</p>
+            </li>
+            <li class="list-inline-item">
+              <p>telefon: 503485053</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-below">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          Copyright &copy; Your Website 2018
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+

@@ -1,0 +1,41 @@
+<div style="text-align:center">
+  <app-alert></app-alert>
+  <div *ngIf="contentIsLoading"style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="measurementType">Wybierz rodziaj pomiaru</label>
+      <select [(ngModel)]="measurementType"
+              class="form-control"
+              name="measurementType" id="measurementType">
+        <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+          {{measurementType.description.toUpperCase()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="multiselect">Wybierz dzieci do porównania</label>
+      <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="optionsModel" class="form-control"
+                               name="multiselect" id="multiselect"
+                               (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+
+      <button type="button" class="btn" (click)="loadData()">Load</button>
+    </div>
+  </form>
+
+
+
+  <div *ngIf="dataIsLoaded">
+    <p>Wykres przedstawia porównanie wyników pomiarów dzieci w zakresie {{measurementType}}</p>
+    <p>gdzie na osi X prezentowany jest wiek w dniach</p>
+    <p>zaś na y wartość pomiaru</p>
+    <canvas id="mixed-chart" baseChart [datasets]="chartData.samples" [labels]="chartData.labels"
+            [chartType]="chartType" [options]="chartOptions"></canvas>
+
+  </div>
+
+  <span *ngIf="noData">No data</span>
+
+</div>

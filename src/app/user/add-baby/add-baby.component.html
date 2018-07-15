@@ -1,0 +1,37 @@
+<div style="text-align:center">
+  <app-alert></app-alert>
+  <div *ngIf="contentIsLoading"style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+  <form>
+    <h3> Wypelnij danymi swojego dziecka</h3>
+    <div class="form-group">
+      <label for="name">Imie</label>
+      <input type="text" class="form-control" [(ngModel)]="baby.name"
+             id="name" name="name" placeholder="Podaj imie dziecka" required>
+    </div>
+
+    <div class="form-group">
+      <label for="babySex">Data urodzenia</label>
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" [(ngModel)]="baby.dateOfBirth" ngbDatepicker #d="ngbDatepicker">
+        <button class="input-group-addon" (click)="d.toggle()" type="button">
+          <img src="assets/images/calendar.png" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="babySex">Płeć</label>
+
+      <select [(ngModel)]="baby.sex" class="form-control" name="babySex" id="babySex">
+        <option value="GIRL">GIRL</option>
+        <option value="BOY">BOY</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-success" (click)="addBaby()">Zapisz</button>
+    <a [routerLink]="['/pages/user']" class="btn btn-link">Anuluj</a>
+  </form>
+</div>
+

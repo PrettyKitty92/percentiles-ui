@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">Percentailing
+      <span *ngIf="currentUser" style="color: beige; font-size: small; font-family: 'fantasy' ">Hello dear admin: {{currentUser.username}}</span>
+    </a>
+
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            (click)="isNavbarCollapsed = !isNavbarCollapsed"
+            aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="exCollapsingNavbar2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a *ngIf="!currentUser" class="nav-link js-scroll-trigger" routerLink="/pages/sign-in"
+             routerLinkActive="active">Login</a>
+          <a *ngIf="currentUser" class="nav-link js-scroll-trigger" (click)="logout()"
+             routerLinkActive="active">Logout</a>
+        </li>
+        <!-- <li class="nav-item">
+           <a *ngIf="currentUser" class="nav-link js-scroll-trigger" (click)="getAllUsers()">Get All Users</a>
+         </li>-->
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="masthead">
+  <div class="container">
+    <img class="img-fluid baby-img" src="assets/images/baby2.png" alt="">
+    <div class="intro-text">
+      <span class="name">{{title}}</span>
+      <hr class="star-light">
+      <span class="skills">Check if your baby is developing properly</span>
+    </div>
+  </div>
+</header>
+<div class="well dashboard">
+  <ng-sidebar-container class="sidebar">
+
+    <ng-sidebar mode='slide' [(opened)]="_opened" #sidebar>
+      <div class="sidebar-nav">
+        <img class="sidebar-button-close" src="assets/images/close.png" alt="close sidebar navigation"
+             (click)="sidebar.close()">
+        <collapsible-list [type]="'expandable'">
+          <collapsible-list-item>
+            <collapsible-body [expanded]="true">
+              <a class="collapsible-body-link" data-toggle="modal" [routerLink]="['manages/admins']">
+                Administratorzy
+              </a>
+            </collapsible-body>
+          </collapsible-list-item>
+          <collapsible-list-item>
+
+            <collapsible-body [expanded]="true">
+              <a class="collapsible-body-link" data-toggle="modal" [routerLink]="['manages/users']">
+                Użytkownicy
+              </a>
+            </collapsible-body>
+          </collapsible-list-item>
+          <collapsible-list-item>
+            <collapsible-body [expanded]="true">
+              <a class="collapsible-body-link" data-toggle="modal" [routerLink]="['manages/statistics']">
+                Statystyki
+              </a>
+            </collapsible-body>
+          </collapsible-list-item>
+        </collapsible-list>
+      </div>
+
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content class="page-content">
+      <img *ngIf="!sidebar.opened" class="sidebar-button-open" src="assets/images/menu.png"
+           alt="open sidebar navigation" (click)="sidebar.open()">
+
+      <router-outlet></router-outlet>
+
+      <section id="admin-dashboard" style="{z-index: 1;}" onresize="getWindowSizes()">
+        <div class="container">
+          <hr class="star-primary">
+          <div class="row">
+
+
+            <div class="col-sm-4 home-dashboard-item">
+              <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['manages/users']">
+                <div class="caption">
+                  <div class="caption-content">
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/images/admin/users.png" alt="" styles
+                     title="Zarzadzaj użytkownikami">
+              </a>
+            </div>
+            <br/>
+
+            <div class="col-sm-4 home-dashboard-item">
+              <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['manages/admins']">
+                <div class="caption">
+                  <div class="caption-content">
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/images/admin/admins.bmp" alt=""
+                     title="Zarzadzaj administratorami">
+              </a>
+            </div>
+            <br/>
+            <div class="col-sm-4 home-dashboard-item">
+              <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['manages/statistics']">
+                <div class="caption">
+                  <div class="caption-content">
+                    <i class="fa fa-search-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="assets/images/admin/stats.png" alt=""
+                     title="Statystyki">
+              </a>
+            </div>
+            <br/>
+
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </ng-sidebar-container>
+</div>
+
+<footer style="{position:fixed; bottom:0;}" class="text-center">
+  <div class="footer-above">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-4">
+          <h3>Lokalizacja</h3>
+          <p>UJ FAIS
+            <br>Kraków</p>
+        </div>
+
+        <div class="footer-col col-md-4">
+          <h3>O Standardach Rozwoju Fizycznego Dzieci</h3>
+          <p>Wszelkie informacje na temat Standardów Rozwoju Fizycznego Dzieci znajdziesz na oficjalnej
+            <a href="http://www.who.int/childgrowth/standards/en/">stronie Światowej organizacji zdrowia</a></p>
+        </div>
+        <div class="footer-col col-md-4">
+          <h3>Znajdz mnie</h3>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <p>email: patrycja.szelc@gmail.com</p>
+            </li>
+            <li class="list-inline-item">
+              <p>telefon: 503485053</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

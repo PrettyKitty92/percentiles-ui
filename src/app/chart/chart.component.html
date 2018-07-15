@@ -1,0 +1,43 @@
+<div class="container" style="text-align:center">
+
+  <app-alert></app-alert>
+
+  <div *ngIf="!isDataLoaded&&contentIsLoading" style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="isDataLoaded">
+    <br/>
+    <hr/>
+    <hr/>
+    <h3>{{description}}</h3>
+    <br/>
+    <canvas id="mixed-chart" baseChart [datasets]="chartData.samples" [labels]="chartData.labels"
+            [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
+  </div>
+  <hr/>
+  <form>
+    <!--<h2>Explore percentile charts!</h2>-->
+    <div class="form-group">
+      <label for="measurementType">Wybierz rodzaj pomaru</label>
+      <select [(ngModel)]="params.measurementType" (change)="onChange($event.target.value)"
+              class="form-control"
+              name="measurementType" id="measurementType">
+        <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+          {{measurementType.description.toUpperCase()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="childSex">Wybierz płec dziecka</label>
+      <select [(ngModel)]="params.childSex" class="form-control" name="childSex" id="childSex">
+        <option value="GIRL">Dziewczynka</option>
+        <option value="BOY">Chłopiec</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn btn-success" (click)="reloadChart()">PRZEŁADUJ</button>
+
+  </form>
+</div>

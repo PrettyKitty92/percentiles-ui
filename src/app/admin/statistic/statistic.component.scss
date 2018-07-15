@@ -1,0 +1,32 @@
+
+@import "../admin.component.scss";
+.search-btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+  background-color: $theme-primary !important;
+  :focus {
+    background: $theme-success !important;
+  }
+}
+
+.form-group-lms{
+  display: inline-block;
+  padding: 10px;
+  width: 33%;
+  input {
+    text-align: center;
+  }
+}
+
+.form-group-pct1{
+  display: inline-block;
+  padding: 10px;
+  width: 33%;
+  input {
+    text-align: center;
+  }
+}
+
+
+

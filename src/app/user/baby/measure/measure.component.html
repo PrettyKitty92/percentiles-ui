@@ -1,0 +1,79 @@
+<div>
+  <app-alert></app-alert>
+  <div *ngIf="contentIsLoading"style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!this.sampleDataLoaded" style="text-align:center">
+
+    <br/>
+    <hr>
+    <h3>Oblicz centyl dla swojego dziecka</h3>
+    <br/>
+    <form>
+      <div class="form-group" *ngIf="priorMeasurement&&!lhfw">
+        <label for="ageUnitType">Wybierz sposób wprowadzenia wiku</label>
+        <select (change)="setUnitType($event.target.value)"
+                class="form-control" name="ageUnitType" id="ageUnitType">
+          <option value=4>Data pomiaru</option>
+          <option value=1>Wiek w dniach</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="measurementType">Wybierz rodzaj pomaru</label>
+        <select [(ngModel)]="measurementDetails.measurementType" (change)="onChange($event.target.value)"
+                class="form-control"
+                name="measurementType" id="measurementType">
+          <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>
+            {{measurementType.description.toUpperCase()}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="measureByDate&&priorMeasurement&&parameterXHidden">
+        <label>Podaj {{measurementDetails.parameterX.placeholder}} swojego dziecka</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="measurementDetails.valueOfParameterX" ngbDatepicker #d="ngbDatepicker">
+          <button class="input-group-addon" (click)="d.toggle()" type="button">
+            <img src="assets/images/calendar.png" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="(!parameterXHidden&&priorMeasurement&&!measureByDate)
+    ||(!priorMeasurement&&!parameterXHidden)">
+        <label for="parameterX">Podaj {{measurementDetails.parameterX.placeholder}} swojego dziecka</label>
+        <input type="text" class="form-control" [(ngModel)]="measurementDetails.valueOfParameterX"
+               id="parameterX" name="parameterX" placeholder="{{measurementDetails.parameterX.placeholder}}">
+      </div>
+
+      <div class="form-group">
+        <label for="parameterY">Podaj {{measurementDetails.parameterY.placeholder}} swojego fd</label>
+        <input type="text" class="form-control" [(ngModel)]="measurementDetails.valueOfParameterY"
+               id="parameterY" name="parameterY" placeholder="{{measurementDetails.parameterY.placeholder}}">
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="submit(true)">Oblicz i Zapisz</button>
+      <button type="button" class="btn btn-success" (click)="submit(false)">Oblicz</button>
+      <button *ngIf="!priorMeasurement" type="button" class="btn" (click)="setPriorMeasurement(true)">Wprowadź
+        wcześniejszy pomiar
+      </button>
+      <button *ngIf="priorMeasurement" type="button" class="btn" (click)="setPriorMeasurement(false)">Wprowadz
+        dzisiejszy pomiar pomiar
+      </button>
+    </form>
+
+    <div *ngIf="chartIsDataLoaded">
+      <br/>
+      <br/>
+
+      <h2>Twoje dziecko plasuje się w {{valuePerPercentile.percentile}} centylu !!</h2>
+
+      <hr>
+      <canvas id="mixed-chart" baseChart [datasets]="chartData.samples" [labels]="chartData.labels"
+              [chartType]="chartType" [options]="chartOptions" [colors]="chartColors"></canvas>
+    </div>
+
+  </div>
+</div>

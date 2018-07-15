@@ -1,0 +1,14 @@
+@import '../../scss/variables';
+@import '../../scss/navbar';
+@import '../../scss/masthead';
+@import '../../scss/contact';
+
+
+
+$theme-primary: #597386;
+$theme-content: rgba(255, 255, 255, 0);
+$theme-success: rgb(167, 202, 221);
+
+input {
+  text-align: center;
+}

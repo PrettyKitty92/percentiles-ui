@@ -1,0 +1,37 @@
+<div>
+  <app-alert></app-alert>
+  <div *ngIf="contentIsLoading"style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!loading&&baby.name!=null" style="text-align:center">
+    <h2>{{baby.name.toUpperCase()}}</h2>
+    <h3>Data urodzin: {{baby.dateOfBirth}}</h3>
+    <h4>Lat: {{babyAge.years}} Miesięcy: {{babyAge.months}} Dni: {{babyAge.days}}</h4>
+    <h4>Łącznie w dniach: {{babyAge.allInDays}}</h4>
+
+    <router-outlet></router-outlet>
+    <section id="home-dashboard" style="{z-index: 1;}" onresize="getWindowSizes()">
+      <div class="container">
+        <hr class="star-primary">
+        <div class="row">
+          <div class="col-sm-4 home-dashboard-item">
+            <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['measure']">
+              <img class="img-fluid" src="assets/images/user/mesurement.png" alt="" styles
+                   title="Oblicz centyl">
+            </a>
+          </div>
+          <div class="col-sm-4 home-dashboard-item">
+            <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['measure/history' , 'chart']">
+              <img class="img-fluid" src="assets/images/home-dashboard/chart.png" alt="" title="Wykresy statystyczne">
+            </a>
+          </div>
+          <div class="col-sm-4 home-dashboard-item">
+            <a class="home-dashboard-link" data-toggle="modal" [routerLink]="['measure/history', 'table']">
+              <img class="img-fluid" src="assets/images/user/table.png" alt="" title="Tabele statystyczne">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

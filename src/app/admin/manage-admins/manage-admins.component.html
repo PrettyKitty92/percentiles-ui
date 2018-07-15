@@ -1,0 +1,141 @@
+<div class="container" style="text-align:center">
+
+  <app-alert></app-alert>
+  <div *ngIf="contentIsLoading"style="margin-left:47%">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="register">
+    <div>
+      <form name="form" (ngSubmit)="f.form.valid && registerAdmin()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="registeredAdmin.firstName"
+                 #firstName="ngModel" required/>
+          <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="registeredAdmin.lastName"
+                 #lastName="ngModel" required/>
+          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="registeredAdmin.username"
+                 #username="ngModel" required/>
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="registeredAdmin.email" #password="ngModel"
+                 required/>
+          <div *ngIf="f.submitted && !password.email" class="help-block">Email is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="registeredAdmin.password"
+                 #password="ngModel" required/>
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Register</button>
+          <img *ngIf="loading"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+          <!--    <a [routerLink]="['/pages/sign-in/']" class="btn btn-link">Cancel</a>-->
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="edit">
+    <div>
+      <form name="form" (ngSubmit)="f.form.valid && editAdmin()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="newAdminData.firstName"
+                 #firstName="ngModel" required/>
+          <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="newAdminData.lastName"
+                 #lastName="ngModel" required/>
+          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="newAdminData.username"
+                 #username="ngModel" required/>
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="newAdminData.email" #password="ngModel"
+                 required/>
+          <div *ngIf="f.submitted && !password.email" class="help-block">Email is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="newAdminData.password"
+                 #password="ngModel" required/>
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Zapisz</button>
+          <img *ngIf="loading"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="container visit-card" *ngIf="selectedAdmin"> <!--Admin vistoting card-->
+    <div class="visit-card-left">
+      <h3>{{selectedAdmin.username}}</h3>
+      <div class="card-user">
+        <p>{{selectedAdmin.firstName}} {{selectedAdmin.lastName}} email: {{selectedAdmin.email}}</p>
+      </div>
+    </div>
+    <div class="visit-card-right">
+      <button type="button" class="btn" (click)="openEditPanel(selectedAdmin)">Edytuj</button>
+      <button type="button" class="btn" (click)="deleteAdmin(selectedAdmin)">Usuń</button>
+    </div>
+  </div>
+
+  <form>
+    <input *ngIf="search"
+           (keyup)="searchTerm$.next($event.target.value)"
+           placeholder="wprowadź nazwę użytkownika">
+    <ul *ngIf="searches">
+      <li *ngFor="let search of searches | slice:0:9">
+        <div>
+          <button type="button" class="btn search-results"
+                  (click)="showDetails(search)">{{search}}
+          </button>
+        </div>
+      </li>
+    </ul>
+
+
+    <button *ngIf="search" type="button" class="btn search-btn" (click)="getAllAdmins()">Pokaż wszystkich użytkowników
+    </button>
+    <ul *ngIf="admins">
+      <li *ngFor="let admin of admins">
+        <div>
+          <button type="button" class="btn search-results" (click)="showDetails(admin.username)">{{admin.username}}
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <br/>
+    <button type="button" class="btn search-btn" (click)="openRegistrationPanel()">Zarejestruj nowego adminstratora
+    </button>
+    <br/>
+    <button *ngIf="!search" type="button" class="btn search-btn" (click)="openSearchPanel()">Wyszukaj administratora
+    </button>
+
+  </form>
+</div>
