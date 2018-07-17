@@ -13,13 +13,15 @@
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
     "secure": false,
     "logLevel": "debug",
-    "pathRewrite": {"^/samples" : ""}
+    "changeOrigin": true,
+    "pathRewrite": {"^/samples/*" : ""}
   },
   "/percentiles/*": {
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
     "secure": false,
     "logLevel": "debug",
-    "pathRewrite": {"^/percentiles" : ""}
+    "changeOrigin": true,
+    "pathRewrite": {"^/percentiles/*" : ""}
   },
   "/sign-up":{
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
