@@ -14,14 +14,14 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {"^/samples/*" : ""}
+    "pathRewrite": {"^/samples/*" : "https://percentile-service.herokuapp.com/percentiles/service/samples/*"}
   },
   "/percentiles/*": {
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {"^/percentiles/*" : ""}
+    "pathRewrite": {"^/percentiles/*" : "https://percentile-service.herokuapp.com/percentiles/percentiles/*"}
   },
   "/sign-up":{
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
