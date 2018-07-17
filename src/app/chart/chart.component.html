@@ -20,7 +20,7 @@
     <!--<h2>Explore percentile charts!</h2>-->
     <div class="form-group">
       <label for="measurementType">Wybierz rodzaj pomaru</label>
-      <select [(ngModel)]="params.measurementType" (change)="onChange($event.target.value)"
+      <select [(ngModel)]="params.measurementType"
               class="form-control"
               name="measurementType" id="measurementType">
         <option *ngFor="let measurementType of measurementTypes" value={{measurementType.type}}>

@@ -8,8 +8,7 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "**/*.ts",
-    "../node_modules/ng2-datetime"
+    "**/*.ts"
   ],
   "exclude": [
     "test.ts",

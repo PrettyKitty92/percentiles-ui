@@ -2,9 +2,6 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {SidebarModule} from 'ng-sidebar';
 import {UserBabyComponent} from './user/baby/baby.component';
-import {NKDatetimeModule} from 'ng2-datetime/ng2-datetime';
-
-
 import {ChartsModule} from 'ng2-charts/charts/charts';
 
 import {AppComponent} from './app.component';
@@ -79,7 +76,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ChartsModule,
     BrowserModule,
     AppRoutingModule,
-    NKDatetimeModule,
     BrowserAnimationsModule,
     CollapsibleModule,
     Ng2SmartTableModule,

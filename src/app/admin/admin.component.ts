@@ -13,6 +13,7 @@ import {UserService} from '../_services/user.service';
 export class AdminComponent {
   title = 'Admin !';
 
+  isNavbarCollapsed = false;
   currentUser: User;
 
   loading = false;

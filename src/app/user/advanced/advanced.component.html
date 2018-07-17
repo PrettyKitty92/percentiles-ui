@@ -18,8 +18,7 @@
     <div class="form-group">
       <label for="multiselect">Wybierz dzieci do porównania</label>
       <ss-multiselect-dropdown [options]="myOptions" [(ngModel)]="optionsModel" class="form-control"
-                               name="multiselect" id="multiselect"
-                               (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                               name="multiselect" id="multiselect"></ss-multiselect-dropdown>
 
       <button type="button" class="btn" (click)="loadData()">Load</button>
     </div>
