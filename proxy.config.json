@@ -17,7 +17,8 @@
   "/percentiles/*": {
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
     "secure": false,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "pathRewrite": {"^/percentiles" : ""}
   },
   "/sign-up":{
     "target": "https://percentile-service.herokuapp.com/percentiles/service",
